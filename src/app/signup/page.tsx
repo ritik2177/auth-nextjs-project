@@ -24,14 +24,16 @@ function Signup() {
       console.log("Signup success", response.data);
       router.push("/login")
       
-    } catch (error : any) {
-      console.log("Signup failed", error.message);
-      
-      toast.error(error.message)
-    }finally{
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        console.log("Signup failed", error.message);
+        toast.error(error.message)
+      }
+    } finally{
       setLoading(false);
     }
   }
+
 
 
   useEffect(() => {

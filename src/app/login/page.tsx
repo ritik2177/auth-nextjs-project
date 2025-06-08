@@ -23,9 +23,11 @@ function Login() {
       toast.success("Login success");
       router.push("/profile")
       
-    } catch (error: any) {
+    } catch (error: unknown) {
+      if (error instanceof Error) {
       console.log("Login failed", error.message);
       toast.error(error.message);
+      }
     }finally{
       setLoading(false)
     }
